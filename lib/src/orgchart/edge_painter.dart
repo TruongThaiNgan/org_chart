@@ -63,6 +63,7 @@ class OrgChartEdgePainter<E> extends CustomPainter {
       Node<E> node, List<Node<E>> subNodes, Canvas canvas) {
     // Check if ALL children are leaf nodes
     bool allChildrenAreLeaves = subNodes.every((child) => isLeafNode(child));
+    bool justOneChild = subNodes.length == 1;
 
     // For each subnode, draw the appropriate connection
     for (int i = 0; i < subNodes.length; i++) {
@@ -98,7 +99,7 @@ class OrgChartEdgePainter<E> extends CustomPainter {
       }
 
       // Use simpleLeafNode connection type if all children are leaves
-      ConnectionType connectionType = allChildrenAreLeaves
+      ConnectionType connectionType = justOneChild ? ConnectionType.direct : allChildrenAreLeaves
           ? ConnectionType.simpleLeafNode
           : ConnectionType.adaptive;
 
