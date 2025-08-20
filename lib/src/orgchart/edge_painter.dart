@@ -88,7 +88,7 @@ class OrgChartEdgePainter<E> extends CustomPainter {
         // For top-to-bottom: start from bottom of parent
         start = getNodeCenter(node) + Offset(0, controller.boxSize.height / 2);
 
-        if (allChildrenAreLeaves) {
+        if (allChildrenAreLeaves && !justOneChild) {
           // For leaf nodes: end at the center of the child (side approach will be handled by simpleLeafNode)
           end = getNodeCenter(subNode);
         } else {
